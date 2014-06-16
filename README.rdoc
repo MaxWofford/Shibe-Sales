@@ -2,7 +2,7 @@
 
 This is a hello world app from One Month Rails
 
-= Dependencies:
+=== Dependencies:
 
 * Ruby 1.9.3
 
