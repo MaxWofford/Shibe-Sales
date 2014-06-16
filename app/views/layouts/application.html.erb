@@ -12,8 +12,41 @@
   </head>
 
   <body>
-
-    <%= yield %>
+  	<div id="header" class="row">
+		<div class="large-12">
+			<nav class="top-bar" data-topbar>
+				<ul class="title-area">
+					<li class="name">
+						<h1>
+							<%= link_to "Shibe Sales", root_path %>
+						</h1>
+					</li>
+					<li class="toggle-topbar">
+						<a href="#"><span>menu</span></a>
+					</li>
+				</ul>
+				<section class="top-bar-section">
+					<ul class="right">
+						<li>
+							<%= link_to "faq", faq_path %>
+						</li>
+						<li>
+							<%= link_to "Contact", contact_path %>
+						</li>
+						<li>
+							<%= link_to "Recommend", recommend_path %>
+						</li>
+					</ul>
+				</section>
+			</nav>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-10 columns">
+    		<%= yield %>
+		</div>
+	</div>
+	
     <%= javascript_include_tag "application" %>
   </body>
 </html>

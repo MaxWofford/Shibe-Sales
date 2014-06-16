@@ -3,4 +3,8 @@ class PagesController < ApplicationController
   end
   def faq
   end
+  def contact
+  end
+  def recommend
+  end
 end
