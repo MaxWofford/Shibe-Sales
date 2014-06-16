@@ -1,3 +1,11 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$body-bg: #1D1C1A;
+$body-font-color: rgb(176, 174, 172);
+$anchor-font-color-hover: rgb(0, 120, 160);
+$primary-color: white;
+$panel-bg: #3C3D3E;
+$panel-border-style: solid;
+$panel-border-size: 1px;
+@import 'foundation';

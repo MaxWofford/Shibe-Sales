@@ -1,52 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
-
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/modernizr" %>
-    <%= csrf_meta_tags %>
-  </head>
-
-  <body>
-  	<div id="header" class="row">
-		<div class="large-12">
-			<nav class="top-bar" data-topbar>
-				<ul class="title-area">
-					<li class="name">
-						<h1>
-							<%= link_to "Shibe Sales", root_path %>
-						</h1>
-					</li>
-					<li class="toggle-topbar">
-						<a href="#"><span>menu</span></a>
-					</li>
-				</ul>
-				<section class="top-bar-section">
-					<ul class="right">
-						<li>
-							<%= link_to "faq", faq_path %>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			<%= content_for?(:title) ? yield(:title) : "foundation-rails" %>
+		</title><%= stylesheet_link_tag    "application" %><%= javascript_include_tag "vendor/modernizr" %><%= csrf_meta_tags %>
+	</head>
+	<body>
+		<div id="header" class="row">
+			<div class="large-12">
+				<nav class="top-bar" data-topbar>
+					<ul class="title-area">
+						<li class="name">
+							<h1>
+								<%= link_to "Shibe Sales", root_path %>
+							</h1>
 						</li>
-						<li>
-							<%= link_to "Contact", contact_path %>
-						</li>
-						<li>
-							<%= link_to "Recommend", recommend_path %>
+						<li class="toggle-topbar">
+							<a href="#"><span>menu</span></a>
 						</li>
 					</ul>
-				</section>
-			</nav>
+					<section class="top-bar-section">
+						<ul class="right">
+							<li>
+								<%= link_to "FAQ", faq_path %>
+							</li>
+							<li>
+								<%= link_to "Contact", contact_path %>
+							</li>
+							<li>
+								<%= link_to "Recommend", recommend_path %>
+							</li>
+						</ul>
+					</section>
+				</nav>
+			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="large-10 columns">
-    		<%= yield %>
+		<div class="row">
+			<div class="large-10 columns">
+				<%= yield %>
+			</div>
 		</div>
-	</div>
-	
-    <%= javascript_include_tag "application" %>
-  </body>
+		<footer id="footer" class="row">
+			<div class="large-12 columns">
+				<div class="horizontal-line"></div>
+				<div class="row footer" style="font-size: .25em;">
+					<div class="large-6 columns">
+						<p>
+							© <a href="">ShibeSales</a> 2014
+						</p>
+					</div><!--<div class="large-6 columns"><ul class="inline-list right"><li><a href="#">Link 1</a></li><li><a href="#">Link 2</a></li><li><a href="#">Link 3</a></li><li><a href="#">Link 4</a></li></ul></div>-->
+				</div>
+			</div>
+		</footer><%= javascript_include_tag "application" %>
+	</body>
 </html>
