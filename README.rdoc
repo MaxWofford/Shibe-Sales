@@ -1,9 +1,0 @@
-== README
-
-This is a hello world app from One Month Rails
-
-=== Dependencies:
-
-* Ruby 1.9.3
-
-* Rails 4.1.1
