@@ -8,4 +8,39 @@ $primary-color: white;
 $panel-bg: #3C3D3E;
 $panel-border-style: solid;
 $panel-border-size: 1px;
+
+.panel {
+  background-color: #3C3D3E;
+  border-bottom-style: solid;
+  border-width: 0px 0px 1px 0px;
+  -moz-border-image: url(BorderGradient.png) 1 0 stretch repeat;
+  -webkit-border-image: url(BorderGradient.png) 1 0 stretch repeat;
+  -o-border-image: url(BorderGradient.png) 1 0 stretch repeat;
+  border-image: url(BorderGradient.png) 1 0 fill stretch repeat;
+  border-top-color: rgb(53, 54, 55);
+}
+.panel h1, .panel h2, .panel h3, .panel h4, .panel h5, .panel h6, .panel p, .panel li {
+  color: inherit;
+}
+.row {
+  max-width: 80rem;
+}
+.horizontal-line {
+  background-image: url(BorderGradient.png);
+  height: 1px;
+  width: auto;
+  background-size: 100%;
+}
+a {
+  color: white;
+}
+.sale {
+  background: #4C6B22;
+  margin: .5em;
+  padding: .25em;
+}
+.strikeout{
+  text-decoration: line-through;
+  opacity: .5;
+}
 @import 'foundation';
