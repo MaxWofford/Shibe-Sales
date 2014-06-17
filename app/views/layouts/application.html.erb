@@ -8,7 +8,7 @@
 		</title><%= stylesheet_link_tag    "application" %><%= javascript_include_tag "vendor/modernizr" %><%= csrf_meta_tags %>
 	</head>
 	<body>
-		<div id="header" class="row">
+		<div id="header" class="row inverse">
 			<div class="large-12">
 				<nav class="top-bar" data-topbar>
 					<ul class="title-area">
@@ -39,10 +39,12 @@
 		</div>
 		<div class="row">
 			<div class="large-10 columns">
+				
 				<%= yield %>
 			</div>
 		</div>
-		<footer id="footer" class="row">
+		<div class="horizontal-line"></div>
+		<footer id="footer" class="row no-border">
 			<div class="large-12 columns">
 				<div class="horizontal-line"></div>
 				<div class="row footer" style="font-size: .25em;">
