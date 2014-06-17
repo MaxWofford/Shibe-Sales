@@ -11,13 +11,13 @@ $panel-border-size: 1px;
 
 .panel {
   background-color: #3C3D3E;
-  border-bottom-style: solid;
+  /*border-bottom-style: solid;
   border-width: 0px 0px 1px 0px;
   -moz-border-image: url(BorderGradient.png) 1 0 stretch repeat;
   -webkit-border-image: url(BorderGradient.png) 1 0 stretch repeat;
   -o-border-image: url(BorderGradient.png) 1 0 stretch repeat;
   border-image: url(BorderGradient.png) 1 0 fill stretch repeat;
-  border-top-color: rgb(53, 54, 55);
+  border-top-color: rgb(53, 54, 55);*/
 }
 .panel h1, .panel h2, .panel h3, .panel h4, .panel h5, .panel h6, .panel p, .panel li {
   color: inherit;
@@ -26,10 +26,12 @@ $panel-border-size: 1px;
   max-width: 80rem;
 }
 .horizontal-line {
-  background-image: url(BorderGradient.png);
-  height: 1px;
-  width: auto;
-  background-size: 100%;
+  height:1px;
+  background:-moz-linear-gradient(left, rgba(139, 123, 77, 0),#8b7b4d); 
+  background:-webkit-linear-gradient(left, rgba(139, 123, 77, 0),#8b7b4d); 
+  background:linear-gradient(left, rgba(139, 123, 77, 0),#8b7b4d);
+  width:100%;
+  display:block;
 }
 a {
   color: white;
