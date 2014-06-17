@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :games
+
   root 'pages#home'
   get "index" => 'pages#home'
   get "faq" => "pages#faq" #creates faq_path
