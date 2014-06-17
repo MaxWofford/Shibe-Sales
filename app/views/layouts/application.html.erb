@@ -8,70 +8,75 @@
 		</title><%= stylesheet_link_tag    "application" %><%= javascript_include_tag "vendor/modernizr" %><%= csrf_meta_tags %>
 	</head>
 	<body>
-		<div id="header">
-			<div class="large-12">
-				<nav class="top-bar" data-topbar>
-					<ul class="title-area">
-						<li class="name">
-							<h1>
-								<%= link_to "Shibe Sales", root_path %>
-							</h1>
-						</li>
-						<li class="toggle-topbar">
-							<a href="#"><span>menu</span></a>
-						</li>
-					</ul>
-					<section class="top-bar-section">
-						<ul class="right">
-							<li>
-								<%= link_to "FAQ", faq_path %>
-							</li>
-							<li>
-								<%= link_to "Contact", contact_path %>
-							</li>
-							<li>
-								<%= link_to "Recommend", recommend_path %>
-							</li>
-						</ul>
-					</section>
-				</nav>
-			</div>
-		</div>
 		<div class="row">
-			<div id="sidePanel">
-				<div class="large-2 small-12 columns">
-					<div class="hide-for-small panel">
-						<h3>
-							Miss a steam sale?
-						</h3>
-						<h5 class="subheader">
-							Buy the game on sale with <a href="http://dogecoin.com/">Ðogecoin</a>!
-						</h5>
-						<div class="horizontal-line"></div>
-					</div>
-					<div class="panel">
-						<h6>
-							Powered by: <a href="https://www.dogeapi.com/">ƉogeAPI</a>
-						</h6>
-						<div class="horizontal-line"></div>
+			<div id="header" class="row">
+				<div class="row">
+					<div class="large-12 columns">
+						<nav class="top-bar" data-topbar>
+							<ul class="title-area">
+								<li class="name">
+									<h1>
+										<%= link_to "Shibe Sales", root_path %>
+									</h1>
+								</li>
+								<li class="toggle-topbar">
+									<a href="#"><span>menu</span></a>
+								</li>
+							</ul>
+							<section class="top-bar-section">
+								<ul class="right">
+									<li>
+										<%= link_to "FAQ", faq_path %>
+									</li>
+									<li>
+										<%= link_to "Contact", contact_path %>
+									</li>
+									<li>
+										<%= link_to "Recommend", recommend_path %>
+									</li>
+								</ul>
+							</section>
+						</nav>
 					</div>
 				</div>
 			</div>
-			<div class="large-10 columns">
-				<%= yield %>
+			
+			<div class="row">
+				<div id="sidePanel">
+					<div class="large-2 small-12 columns">
+						<div class="hide-for-small panel">
+							<h3>
+								Miss a steam sale?
+							</h3>
+							<h5 class="subheader">
+								Buy the game on sale with <a href="http://dogecoin.com/">Ðogecoin</a>!
+							</h5>
+							<div class="horizontal-line"></div>
+						</div>
+						<div class="panel">
+							<h6>
+								Powered by: <a href="https://www.dogeapi.com/">ƉogeAPI</a>
+							</h6>
+							<div class="horizontal-line"></div>
+						</div>
+					</div>
+				</div>
+				<div class="large-10 columns">
+					<%= yield %>
+				</div>
 			</div>
+			<footer id="footer" class="row no-border">
+				<div class="large-12 columns">
+					<div class="row footer" style="font-size: .25em;">
+						<div class="horizontal-line"></div>
+						<div class="large-6 columns">
+							<p>
+								© <a href="">ShibeSales</a> 2014
+							</p>
+						</div><!--<div class="large-6 columns"><ul class="inline-list right"><li><a href="#">Link 1</a></li><li><a href="#">Link 2</a></li><li><a href="#">Link 3</a></li><li><a href="#">Link 4</a></li></ul></div>-->
+					</div>
+				</div>
+			</footer><%= javascript_include_tag "application" %>
 		</div>
-		<footer id="footer" class="row no-border">
-			<div class="large-12 columns">
-				<div class="row footer" style="font-size: .25em;">
-					<div class="horizontal-line"></div>
-					<div class="large-6 columns">
-						<p>
-							© <a href="">ShibeSales</a> 2014
-						</p>
-					</div><!--<div class="large-6 columns"><ul class="inline-list right"><li><a href="#">Link 1</a></li><li><a href="#">Link 2</a></li><li><a href="#">Link 3</a></li><li><a href="#">Link 4</a></li></ul></div>-->
-				</div>
-			</div>
-		</footer><%= javascript_include_tag "application" %>
 	</body>
 </html>
