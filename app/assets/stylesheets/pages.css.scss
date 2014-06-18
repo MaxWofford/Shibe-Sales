@@ -6,30 +6,14 @@ $body-font-color: rgb(176, 174, 172);
 $anchor-font-color-hover: rgb(0, 120, 160);
 $primary-color: white;
 $panel-bg: #3C3D3E;
-$panel-border-style: solid;
-$panel-border-size: 1px;
-
 $legend-bg: #3C3D3E;
 $legend-padding: rem-calc(0 3);
 
 $fieldset-border-color: #8b7b4d;
 $header-font-color: rgb(176, 174, 172);
+$form-label-font-color: scale-color(#000, $lightness: 70%);
 
 h1, h2, h3, h4, h5, h6 {
-  color: #3C3D3E;
-}
-
-.panel {
-  background-color: #3C3D3E;
-  /*border-bottom-style: solid;
-  border-width: 0px 0px 1px 0px;
-  -moz-border-image: url(BorderGradient.png) 1 0 stretch repeat;
-  -webkit-border-image: url(BorderGradient.png) 1 0 stretch repeat;
-  -o-border-image: url(BorderGradient.png) 1 0 stretch repeat;
-  border-image: url(BorderGradient.png) 1 0 fill stretch repeat;
-  border-top-color: rgb(53, 54, 55);*/
-}
-.panel h1, .panel h2, .panel h3, .panel h4, .panel h5, .panel h6, .panel p, .panel li {
   color: #3C3D3E;
 }
 .row {
