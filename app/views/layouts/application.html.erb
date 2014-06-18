@@ -33,20 +33,22 @@
 									</li>
 									<li>
 										<%= link_to "Recommend", recommend_path %>
-									</li>
+									</li><% if user_signed_in? %>
 									<li>
-										<%= link_to "Log in", new_user_session_path %>
-									</li>
-									<li>
-         							<%= link_to "Sign up", new_user_registration_path %>
-									</li>
+										<%= link_to "Log out", destroy_user_session_path, method: :delete %>
+									</li><% end %>
 								</ul>
 							</section>
 						</nav>
 					</div>
 				</div>
 			</div>
-			
+			<% if current_page?(admin_path)%>
+			<div class="large-10 columns">
+				<% flash.each do |name, msg| %><%= content_tag(:div, msg, class: "alert alert-info") %><% end %>
+				<%= yield %>
+			</div>
+			<% else %>
 			<div class="row">
 				<div id="sidePanel">
 					<div class="large-2 small-12 columns">
@@ -70,12 +72,11 @@
 					</div>
 				</div>
 				<div class="large-10 columns">
-					<% flash.each do |name, msg| %>
-     					<%= content_tag(:div, msg, class: "alert alert-info") %>
-					<% end %>
+					<% flash.each do |name, msg| %><%= content_tag(:div, msg, class: "alert alert-info") %><% end %>
 					<%= yield %>
 				</div>
 			</div>
+			<% end %>
 			<footer id="footer" class="row no-border">
 				<div class="large-12 columns">
 					<div class="row footer" style="font-size: .25em;">
@@ -84,7 +85,17 @@
 							<p>
 								© <a href="">ShibeSales</a> 2014
 							</p>
-						</div><!--<div class="large-6 columns"><ul class="inline-list right"><li><a href="#">Link 1</a></li><li><a href="#">Link 2</a></li><li><a href="#">Link 3</a></li><li><a href="#">Link 4</a></li></ul></div>-->
+						</div>
+						<div class="large-6 columns">
+							<ul class="inline-list right">
+								<% if current_page?(admin_path)%>
+								<% else %>
+								<li>
+									<%= link_to "Admin Page", admin_path %>
+								</li>
+								<% end %>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</footer><%= javascript_include_tag "application" %>
