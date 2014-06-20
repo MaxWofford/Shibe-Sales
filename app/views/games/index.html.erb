@@ -1,9 +1,10 @@
-<h1>Listing games</h1>
-
+<% if user_signed_in? %>
+<%= link_to 'New Listing', new_game_path, {:class => "button success"}%>
 <table>
   <thead>
     <tr>
       <th>Title</th>
+      <th>User</th>
       <th>Description</th>
       <th>Reducedprice</th>
       <th>Sale</th>
@@ -15,6 +16,7 @@
     <% @games.each do |game| %>
       <tr>
         <td><%= game.title %></td>
+        <td><%= game.user.email if game.user %></td>
         <td><%= game.description %></td>
         <td><%= game.reducedPrice %></td>
         <td><%= game.sale %></td>
@@ -27,5 +29,17 @@
 </table>
 
 <br>
+<% else %>
+<h1>Featured Games</h1>
+<% end %>
 
-<%= link_to 'New Game', new_game_path %>
+<% @games.each do |game| %>
+ <div class="large-4 small-6 columns">
+  <img src="#" class="game-title">
+  <div>
+    <h4><%= game.title %> <span class="sale">-<%= game.sale %>% </span></h4>
+    <p class="strikeout">Ð 1,000</p>
+    <p>Ð <%= game.reducedPrice %></p>
+  </div>
+ </div>
+<% end %>

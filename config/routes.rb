@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :games
 
-  root 'pages#home'
-  get "index" => 'pages#home'
+  root 'games#index'
+  get "index" => 'games#index'
   get "faq" => "pages#faq" #creates faq_path
   get "contact" => "pages#contact"
   get "recommend" => "pages#recommend"

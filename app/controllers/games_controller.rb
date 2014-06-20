@@ -9,7 +9,7 @@ class GamesController < ApplicationController
   end
 
   def new
-    @game = Game.new
+    @game = current_user.games.build
   end
 
   # GET /games/1/edit
@@ -17,7 +17,7 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Game.new(game_params)
+    @game = current_user.games.build(game_params)
 
     respond_to do |format|
       if @game.save
