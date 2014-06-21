@@ -34,7 +34,7 @@
 <% @games.each do |game| %>
 <div class="large-4 small-6 columns">
   <%= link_to game do%>
-   <img src="#" class="game-title">
+   <% image_tag game.image.url %>
    <div>
      <h4><%= game.title %> <span class="sale">-<%= game.sale %>% </span></h4>
      <p class="strikeout">Ð 1,000</p>
