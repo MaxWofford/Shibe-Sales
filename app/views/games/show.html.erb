@@ -1,10 +1,9 @@
 <p id="notice"><%= notice %></p>
+<%= image_tag @game.image.url %>
 <p>
   <strong>Title:</strong>
   <%= @game.title %>
 </p>
-
-<% image_tag @game.image.url %>
 <p>
   <strong>Description:</strong>
   <%= @game.description %>
