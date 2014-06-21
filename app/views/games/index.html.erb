@@ -33,15 +33,15 @@
 
 <% @games.each do |game| %>
 <div class="large-4 small-6 columns">
-  <div class="panel">
   <%= link_to game do%>
-   <%= image_tag game.image.url %>
+  <div class="panel">
+   <%= image_tag game.image.url, :class => "style_image" %>
    <div>
-     <h4><%= game.title %> <span class="sale">-<%= game.sale %>% </span></h4>
+     <h4><!--<%= game.title %>--> <br><span class="sale">-<%= game.sale %>% </span></h4>
      <p class="strikeout">Ð 1,000</p>
      <p>Ð <%= game.reducedPrice %></p>
    </div>
-  <% end %>
   </div>
+  <% end %>
 </div>
 <% end %>
