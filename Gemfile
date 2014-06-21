@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'foundation-rails'
 gem 'devise'
 gem 'paperclip', github: 'thoughtbot/paperclip'
+gem 'aws-sdk', '~> 1.20.0'
 
 gem 'sdoc', '~> 0.4.0',          group: :doc
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
