@@ -32,7 +32,8 @@
 <% end %>
 
 <% @games.each do |game| %>
-<div class="large-4 small-6 columns panel">
+<div class="large-4 small-6 columns">
+  <div class="panel">
   <%= link_to game do%>
    <%= image_tag game.image.url %>
    <div>
@@ -41,5 +42,6 @@
      <p>Ð <%= game.reducedPrice %></p>
    </div>
   <% end %>
+  </div>
 </div>
 <% end %>
