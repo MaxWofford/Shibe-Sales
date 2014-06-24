@@ -32,8 +32,13 @@ a {
 }
 .sale {
   background: #4C6B22;
-  margin: .5em;
   padding: .25em;
+  font-size: 24px;
+}
+.price {
+  background-color: black;
+  padding: .5em;
+  font-size: 18px;
 }
 .strikeout{
   text-decoration: line-through;
