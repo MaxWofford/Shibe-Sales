@@ -24,11 +24,13 @@
     <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%= f.label :reducedPrice %><br>
+    <!--<%= f.label :reducedPrice %>-->
+    <label>Original Price in USD</label>
+    <br>
     <%= f.text_field :reducedPrice %>
   </div>
   <div class="field">
-    <%= f.label :sale %><br>
+    <%= f.label :sale %><label>*in % off</label><br>
     <%= f.number_field :sale %>
   </div>
   <div class="actions">
