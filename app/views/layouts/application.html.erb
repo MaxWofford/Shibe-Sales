@@ -23,6 +23,9 @@
 							<section class="top-bar-section">
 								<ul class="right">
 									<li>
+										<%= DogeApi::DogeChain.new.getdifficulty %>
+									</li>
+									<li>
 										<%= link_to "FAQ", faq_path %>
 									</li>
 									<li>
@@ -68,6 +71,7 @@
 								<h6>
 									Powered by: <a href="https://www.dogeapi.com/">ƉogeAPI</a>
 								</h6>
+								<h4><small>On block <%= DogeApi::DogeChain.new.getblockcount %></small></h4>
 								<div class="horizontal-line"></div>
 							</div>
 						</div>
