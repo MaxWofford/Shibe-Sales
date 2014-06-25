@@ -21,6 +21,7 @@
 
 <a class="success button" href="">Purchase <%= @game.sale %>% off</a>
 
-<%= if user_signed_in? %>
-<%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+<% if user_signed_in? %>
+	<%= link_to 'Edit', edit_game_path(@game) %> |
+	<%= link_to 'Back', games_path %>
+<% end %>
