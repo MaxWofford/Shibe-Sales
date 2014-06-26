@@ -37,4 +37,20 @@ Rails.application.configure do
 
   # Required for heroku
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  require 'doge_api'
+
+  $my_api_key = 'API_KEY'
+  $my_address = 'DBv97MSG4gNjcGoHCMX1nfanLjzBgVERi9'
+  $my_api_address = 'DPf8M6McXUZW5zDxwAKXAfid4A78P8o21M'
+
+  doge_api = DogeApi::DogeApi.new($my_api_key, version=2)
+  doge_chain = DogeApi::DogeChain.new
+
+
+  #Sanity checking that 1 + 2 = 3
+  $cake = 1
+  $pie = 2
+  $spy = $cake + $pie
+
 end
