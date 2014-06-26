@@ -68,7 +68,9 @@
 								<h6>
 									Powered by: <a href="https://www.dogeapi.com/">ƉogeAPI</a>
 								</h6>
-								<h4><small>Current Difficulty <%= doge_chain.getdifficulty %></small></h4>
+								<h4><small>Current Difficulty 
+									<% doge_chain = DogeApi::DogeChain.new %>
+									<%= doge_chain.getdifficulty %></small></h4>
 								<div class="horizontal-line"></div>
 							</div>
 						</div>
