@@ -17,3 +17,5 @@
 
 #Ignore any localhosted images 
 /public/system/games
+
+/config/locales/*.yml
