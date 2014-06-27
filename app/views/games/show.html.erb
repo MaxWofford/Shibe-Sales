@@ -1,25 +1,66 @@
 <p id="notice"><%= notice %></p>
 <%= image_tag @game.image.url %>
 <p>
-  <strong>Title:</strong>
-  <%= @game.title %>
+  <h3>
+    <span id="game-title"><%= @game.title %></span>
+  </h3>
 </p>
 <p>
-  <strong>Description:</strong>
   <%= @game.description %>
 </p>
 
 <p>
-  <strong>Reducedprice:</strong>
-  <%= @game.reducedPrice.to_i - @game.reducedPrice.to_i * @game.sale / 100  %>
+  <strong>Price:</strong>
+  <span id="reduced-price"><%= @game.reducedPrice.to_i - @game.reducedPrice.to_i * @game.sale / 100  %></span>Ð
 </p>
 
-<p>
+<!--<p>
   <strong>Sale:</strong>
-  <%= @game.sale %>
-</p>
+  <%= @game.sale %>%
+</p>-->
 
-<a class="success button" href="">Purchase <%= @game.sale %>% off</a>
+<!--Don't look at this area. Really. It will make you lose faith in humanity.--> 
+
+<!-- Please understand I only did this because I have to get payments working in the next 30 minutes. Please don't look here-->
+
+<!--Turn back now ಠ_ಠ -->
+
+<!--
+
+    ____   _       _____    ____  _   ____________     __  ______  __  __
+   /  _/  | |     / /   |  / __ \/ | / / ____/ __ \    \ \/ / __ \/ / / /
+   / /    | | /| / / /| | / /_/ /  |/ / __/ / / / /     \  / / / / / / / 
+ _/ /     | |/ |/ / ___ |/ _, _/ /|  / /___/ /_/ /      / / /_/ / /_/ /  
+/___/     |__/|__/_/  |_/_/ |_/_/ |_/_____/_____/      /_/\____/\____/   
+                                                                        
+-->
+
+<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+<script type="text/javascript">
+  var fb = new Firebase("https://shibe-games.firebaseio.com/purchases/heroku");
+  var purchase = function (userEmail, userPurchase, cost) {
+    var purchaseStatus = "Submitted";
+    var userPurchase = document.getElementById("game-title").innerHTML;
+    var cost = document.getElementById("reduced-price").innerHTML;
+    var userEmail = document.getElementById("email").value;
+    fb.push({email: userEmail, title: userPurchase, cost: cost, status: purchaseStatus}); /*Pushes data to firebase*/
+    document.getElementById("success-message").className = document.getElementById("success-message").className.replace( /(?:^|\s)hide(?!\S)/g , '' )
+    document.getElementById("success-message").className += "success alert-box";
+    return false;
+  }
+</script>
+
+<!--There. It's done. You can open your eyes now. The horror is over-->
+<fieldset>
+  <legend>Checkout</legend>
+<div id="checkout">
+  <form>
+    <input type="email" id="email" placeholder="your email">
+  </form>
+  <button class="success button" onClick="purchase();">Purchase at <%= @game.sale %>% off</button>
+  <h4 id="success-message" class="hide">Your purchase request was submitted successfully! We'll get back to you with a payment address soon.</h4>
+</div>
+</fieldset>
 
 <% if user_signed_in? %>
 	<%= link_to 'Edit', edit_game_path(@game) %> |
