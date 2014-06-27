@@ -15,7 +15,8 @@
 /log/*.log
 /tmp
 
-#Ignore any localhosted images 
+# Ignore any localhosted images 
 /public/system/games
 
+# Ignore secrets.yml file
 /config/locales/*.yml
