@@ -2,7 +2,9 @@
 <div class="panel">
 	<h1>Want us to stock up on a game when it goes on sale? Recommend it here!</h1>
 	<h4>We'll also send you a notification if you provide your email.</h4>
-	<input type="text" placeholder="Game title">
-	<input type="text" placeholder="Email (option)">
-	<button class="success">Recommend</button>
+	<form>
+		<input type="text" id="game-title" placeholder="Game title">
+		<input type="email" id="email" placeholder="Email (option)">
+	</form>
+	<button class="success" onClick="recommend();">Recommend</button>
 </div>
