@@ -68,9 +68,15 @@
 								<h6>
 									Powered by: <a href="https://www.dogeapi.com/">ƉogeAPI</a>
 								</h6>
-								<h4><small>Current Difficulty 
+								<h4><small>API is 
 									<% doge_chain = DogeApi::DogeChain.new %>
-									<%= doge_chain.getdifficulty %></small></h4>
+									<% if doge_chain.getdifficulty.to_i.is_a?(Numeric)
+										api_status = "up"
+									else
+										api_status = "down"
+									end %>
+									<%= api_status %>
+								</small></h4>
 								<div class="horizontal-line"></div>
 							</div>
 						</div>
