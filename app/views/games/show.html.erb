@@ -43,9 +43,13 @@
 
       var purchaseStatus = "Submitted";
       var userPurchase = document.getElementById("game-title").innerHTML;
-      var cost = document.getElementById("reduced-price").innerHTML;
+
+      //Using id"converted" to ensure conversion to Doge
+      var cost = document.getElementById("converted").innerHTML; 
+      
+      //Pushes data to firebase
       var userEmail = document.getElementById("email").value;
-      fb.push({email: userEmail, title: userPurchase, cost: cost, status: purchaseStatus}); /*Pushes data to firebase*/
+      fb.push({email: userEmail, title: userPurchase, cost: cost, status: purchaseStatus}); 
   
       //Disables send button after request is sent
       document.getElementById("submit-button").className += " disabled";
