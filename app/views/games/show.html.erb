@@ -45,8 +45,8 @@
       var userPurchase = document.getElementById("game-title").innerHTML;
 
       //Using id"converted" to ensure conversion to Doge
-      var cost = document.getElementById("converted").innerHTML; 
-      
+      var cost = document.getElementById("converted").innerHTML + " Doge";
+
       //Pushes data to firebase
       var userEmail = document.getElementById("email").value;
       fb.push({email: userEmail, title: userPurchase, cost: cost, status: purchaseStatus}); 
