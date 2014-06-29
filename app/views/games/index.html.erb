@@ -39,7 +39,7 @@
    <div class="inline">
      <!--<%= game.title %>--> <span class="sale">-<%= game.sale %>% </span>
      <!--<p class="strikeout">Ð 1,000</p>-->
-     <span class="price">Ð <%= game.reducedPrice.to_i - game.reducedPrice.to_i * game.sale / 100 %></span>
+     <span class="price">Ð <span id="convert"><%= game.reducedPrice.to_i - game.reducedPrice.to_i * game.sale / 100 %></span></span>
    </div>
   </div>
   <% end %>

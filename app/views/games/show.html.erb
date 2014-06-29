@@ -11,7 +11,7 @@
 
 <p>
   <strong>Price:</strong>
-  <span id="reduced-price"><%= @game.reducedPrice.to_i - @game.reducedPrice.to_i * @game.sale / 100  %></span>Ð
+  <span id="reduced-price"><span id="convert"><%= @game.reducedPrice.to_i - @game.reducedPrice.to_i * @game.sale / 100  %></span></span>Ð
 </p>
 
 <!--<p>
