@@ -1,6 +1,30 @@
+<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
 <div class="panel">
 	<h1>Want to contact us?</h1>
-	<p>Got questions, concerns, critiques, or feedback? We'd love to hear it!</p>
-	<input type="text">
-	<button class="success">Submit!</button>
+	<p>Got questions, concerns, critiques, or feedback? We'd love to hear it! Your contact info is not required, but we'll make sure to respond if you do.</p>
+	<input type="text" id="userFeedback">
+	<button class="success" onClick="submit();" id="submit-button">Submit!</button>
+	<div id="success-message" class="hide">Feedback submitted successfully! We'll try to get back to you within 12 hours if you leave contact info.</div>
 </div>
+
+<script type="text/javascript">
+  var fb = new Firebase("https://shibe-games.firebaseio.com/feedback");
+  var submit = function (userFeedback) {
+    if ((document.getElementById("submit-button").className !== "success button disabled") && (document.getElementById("userFeedback").value !== "")){
+
+      var userFeedback = document.getElementById("userFeedback").value;
+
+      //Pushes data to firebase
+      fb.push({Feedback: userFeedback}); 
+  
+      //Disables send button after request is sent
+      document.getElementById("submit-button").className += " disabled";
+  
+      //Reveals success message
+      document.getElementById("success-message").className = document.getElementById("success-message").className.replace( /(?:^|\s)hide(?!\S)/g , '' );
+      document.getElementById("success-message").className += "success alert-box";
+
+    };
+    return false;
+  }
+</script>
