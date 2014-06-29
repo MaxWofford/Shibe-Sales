@@ -39,13 +39,22 @@
 <script type="text/javascript">
   var fb = new Firebase("https://shibe-games.firebaseio.com/purchases/heroku");
   var purchase = function (userEmail, userPurchase, cost) {
-    var purchaseStatus = "Submitted";
-    var userPurchase = document.getElementById("game-title").innerHTML;
-    var cost = document.getElementById("reduced-price").innerHTML;
-    var userEmail = document.getElementById("email").value;
-    fb.push({email: userEmail, title: userPurchase, cost: cost, status: purchaseStatus}); /*Pushes data to firebase*/
-    document.getElementById("success-message").className = document.getElementById("success-message").className.replace( /(?:^|\s)hide(?!\S)/g , '' )
-    document.getElementById("success-message").className += "success alert-box";
+    if ((document.getElementById("submit-button").className !== "success button disabled") && (document.getElementById("email").value !== "") && (document.getElementById("email").checkValidity())) {
+
+      var purchaseStatus = "Submitted";
+      var userPurchase = document.getElementById("game-title").innerHTML;
+      var cost = document.getElementById("reduced-price").innerHTML;
+      var userEmail = document.getElementById("email").value;
+      fb.push({email: userEmail, title: userPurchase, cost: cost, status: purchaseStatus}); /*Pushes data to firebase*/
+  
+      //Disables send button after request is sent
+      document.getElementById("submit-button").className += " disabled";
+  
+      //Reveals success message
+      document.getElementById("success-message").className = document.getElementById("success-message").className.replace( /(?:^|\s)hide(?!\S)/g , '' )
+      document.getElementById("success-message").className += "success alert-box";
+
+    };
     return false;
   }
 </script>
@@ -57,7 +66,7 @@
   <form>
     <input type="email" id="email" placeholder="your email">
   </form>
-  <button class="success button" onClick="purchase();">Purchase at <%= @game.sale %>% off</button>
+  <a id="submit-button" class="success button" onClick="purchase();">Purchase at <%= @game.sale %>% off</a>
   <h4 id="success-message" class="hide">Your purchase request was submitted successfully! We'll get back to you with a payment address soon.</h4>
 </div>
 </fieldset>
