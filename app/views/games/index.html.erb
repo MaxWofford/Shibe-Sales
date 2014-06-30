@@ -1,3 +1,8 @@
+<!--Need to find best practice place to define this -->
+<% doge_price = RestClient.get('https://www.dogeapi.com/wow/?a=get_current_price') %>
+<% parsed_price = JSON.parse doge_price %>
+<% conversion_rate = parsed_price["data"]["amount"] %>
+
 <% if user_signed_in? %>
 <%= link_to 'New Listing', new_game_path, {:class => "button success"}%>
 <table>
@@ -38,8 +43,8 @@
   <div class="panel">
    <div class="inline">
      <!--<%= game.title %>--> <span class="sale">-<%= game.sale %>% </span>
-     <!--<p class="strikeout">Ð 1,000</p>-->
-     <span class="price">Ð <span id="convert"><%= game.reducedPrice.to_i - game.reducedPrice.to_i * game.sale / 100 %></span></span>
+     <p class="strikeout">Ð <span id="original-price"><%= number_with_delimiter( ((game.reducedPrice.to_i / conversion_rate / 100).ceil) * 100, :delimiter => ',') %></span></p>
+     <span class="price">Ð <span id="convert"><%= number_with_delimiter(((((game.reducedPrice.to_i - game.reducedPrice.to_i * game.sale / 100) / conversion_rate) / 100).ceil)* 100 , :delimiter => ',') %></span></span>
    </div>
   </div>
   <% end %>

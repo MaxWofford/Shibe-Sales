@@ -15,19 +15,4 @@
 //= require turbolinks
 //= require_tree .
 
-
-//Get USD/DOGE conversion rate
-var dogecoinRef = new Firebase("https://publicdata-cryptocurrency.firebaseio.com/dogecoin");
-dogecoinRef.child("last").on("value", showPrice);
-
-//Update USD/DOGE conversion rate
-function showPrice(snapshot) {
-  rate = snapshot.val();
-  document.getElementById("header-rate").innerHTML = Math.floor(1 / rate);
-  while (document.getElementById("convert") !== null) {
-  	document.getElementById("convert").innerHTML = Math.ceil(document.getElementById("convert").innerHTML * (1 / rate)/100)*100;
-	document.getElementById("convert").id = "converted";
-  }
-}
-
 $(function(){ $(document).foundation(); });

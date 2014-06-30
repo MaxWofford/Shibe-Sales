@@ -1,3 +1,8 @@
+<!--Need to find best practice place to define this -->
+<% doge_price = RestClient.get('https://www.dogeapi.com/wow/?a=get_current_price') %>
+<% parsed_price = JSON.parse doge_price %>
+<% conversion_rate = parsed_price["data"]["amount"] %>
+
 <p id="notice"><%= notice %></p>
 <%= image_tag @game.image.url %>
 <p>
@@ -11,7 +16,7 @@
 
 <p>
   <strong>Price:</strong>
-  <span id="reduced-price"><span id="convert"><%= @game.reducedPrice.to_i - @game.reducedPrice.to_i * @game.sale / 100  %></span></span>Ð
+  <span id="reduced-price"><span id="convert"><%= number_with_delimiter(((((@game.reducedPrice.to_i - @game.reducedPrice.to_i * @game.sale / 100) / conversion_rate) / 100).ceil)* 100 , :delimiter => ',') %></span></span>Ð
 </p>
 
 <!--<p>
@@ -44,8 +49,8 @@
       var purchaseStatus = "Submitted";
       var userPurchase = document.getElementById("game-title").innerHTML;
 
-      //Using id"converted" to ensure conversion to Doge
-      var cost = document.getElementById("converted").innerHTML + " Doge";
+      //Using id"convert" because conversion is no longer front-end
+      var cost = document.getElementById("convert").innerHTML + " Doge";
 
       //Pushes data to firebase
       var userEmail = document.getElementById("email").value;

@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+
+<!--Need to find best practice place to define this -->
+<% doge_price = RestClient.get('https://www.dogeapi.com/wow/?a=get_current_price') %>
+<% parsed_price = JSON.parse doge_price %>
+<% conversion_rate = parsed_price["data"]["amount"] %>
+
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -22,7 +28,7 @@
 							</ul>
 							<section class="top-bar-section">
 								<ul class="right">
-									<li><a href="https://www.dogeapi.com/convert_doge">Currently operating at <span id="header-rate">Ɖ</span>Ɖ/1USD</a></li>
+									<li><a href="https://www.dogeapi.com/convert_doge">Currently operating at <span id="header-rate"><%=  ((1 / conversion_rate) / 100).floor * 100 %></span>Ɖ/1USD</a></li>
 									<li>
 										<%= link_to "FAQ", faq_path %>
 									</li>

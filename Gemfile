@@ -13,7 +13,8 @@ gem 'devise'
 gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'aws-sdk', '~> 1.20.0'
 gem 'doge_api', '~> 0.0.7'
-gem 'figaro'
+gem 'rest-client'
+gem 'json'
 
 gem 'sdoc', '~> 0.4.0',          group: :doc
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
