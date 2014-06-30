@@ -43,7 +43,10 @@
   <div class="panel">
    <div class="inline">
      <!--<%= game.title %>--> <span class="sale">-<%= game.sale %>% </span>
+     
+     <!--Hiding this until styled
      <p class="strikeout">Ð <span id="original-price"><%= number_with_delimiter( ((game.reducedPrice.to_i / conversion_rate / 100).ceil) * 100, :delimiter => ',') %></span></p>
+     -->
      <span class="price">Ð <span id="convert"><%= number_with_delimiter(((((game.reducedPrice.to_i - game.reducedPrice.to_i * game.sale / 100) / conversion_rate) / 100).ceil)* 100 , :delimiter => ',') %></span></span>
    </div>
   </div>
