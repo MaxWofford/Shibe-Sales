@@ -24,60 +24,28 @@
   <%= @game.sale %>%
 </p>-->
 
-<!--Don't look at this area. Really. It will make you lose faith in humanity.--> 
+<% @game_price = ((((@game.reducedPrice.to_i - @game.reducedPrice.to_i * @game.sale / 100) / conversion_rate) / 100).ceil)* 100 %>
 
-<!-- Please understand I only did this because I have to get payments working in the next 30 minutes. Please don't look here-->
-
-<!--Turn back now ಠ_ಠ -->
-
-<!--
-
-    ____   _       _____    ____  _   ____________     __  ______  __  __
-   /  _/  | |     / /   |  / __ \/ | / / ____/ __ \    \ \/ / __ \/ / / /
-   / /    | | /| / / /| | / /_/ /  |/ / __/ / / / /     \  / / / / / / / 
- _/ /     | |/ |/ / ___ |/ _, _/ /|  / /___/ /_/ /      / / /_/ / /_/ /  
-/___/     |__/|__/_/  |_/_/ |_/_/ |_/_____/_____/      /_/\____/\____/   
-                                                                        
--->
-
-<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
-<script type="text/javascript">
-  var fb = new Firebase("https://shibe-games.firebaseio.com/purchases/heroku");
-  var purchase = function (userEmail, userPurchase, cost) {
-    if ((document.getElementById("submit-button").className !== "success button disabled") && (document.getElementById("email").value !== "") && (document.getElementById("email").checkValidity())) {
-
-      var purchaseStatus = "Submitted";
-      var userPurchase = document.getElementById("game-title").innerHTML;
-
-      //Using id"convert" because conversion is no longer front-end
-      var cost = document.getElementById("convert").innerHTML + " Doge";
-
-      //Pushes data to firebase
-      var userEmail = document.getElementById("email").value;
-      fb.push({email: userEmail, title: userPurchase, cost: cost, status: purchaseStatus}); 
-  
-      //Disables send button after request is sent
-      document.getElementById("submit-button").className += " disabled";
-  
-      //Reveals success message
-      document.getElementById("success-message").className = document.getElementById("success-message").className.replace( /(?:^|\s)hide(?!\S)/g , '' );
-      document.getElementById("success-message").className += "success alert-box";
-
-    };
-    return false;
-  }
-</script>
-
-<!--There. It's done. You can open your eyes now. The horror is over-->
 <fieldset>
   <legend>Checkout</legend>
-<div id="checkout">
-  <form>
+
+  <form action="https://www.coinpayments.net/index.php" method="post">
     <input type="email" id="email" placeholder="your email">
+    <input type="hidden" name="cmd" value="_pay">
+    <input type="hidden" name="reset" value="1">
+    <input type="hidden" name="merchant" value="1314720bb062281182391f79c0d4d232">
+    <%= hidden_field_tag 'item_name', @game.title %>
+    <input type="hidden" name="currency" value="DOGE">
+    <%= hidden_field_tag 'amountf', @game_price %>
+    <input type="hidden" name="quantity" value="1">
+    <input type="hidden" name="allow_quantity" value="0">
+    <input type="hidden" name="want_shipping" value="0">
+    <input type="hidden" name="success_url" value="worked.com">
+    <input type="hidden" name="cancel_url" value="didntwork.com">
+    <input type="hidden" name="allow_extra" value="1">
+    <input type="hidden" name="email" value="">
+    <button class="button success">Purchase at <%= @game.sale %>% off</button>
   </form>
-  <a id="submit-button" class="success button" onClick="purchase();">Purchase at <%= @game.sale %>% off</a>
-  <h4 id="success-message" class="hide">Your purchase request was submitted successfully! We'll get back to you with a payment address soon. If you have any questions or comments, feel free to reach us at contact.shibesales@gmail.com</h4>
-</div>
 </fieldset>
 
 <% if user_signed_in? %>
