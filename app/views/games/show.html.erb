@@ -1,7 +1,11 @@
 <!--Need to find best practice place to define this -->
-<% doge_price = RestClient.get('https://www.dogeapi.com/wow/?a=get_current_price') %>
-<% parsed_price = JSON.parse doge_price %>
-<% conversion_rate = parsed_price["data"]["amount"] %>
+<%doge_price = RestClient.get('https://www.dogeapi.com/wow/?a=get_current_price') 
+parsed_price = JSON.parse doge_price 
+if parsed_price["data"]["amount"] == 0
+  conversion_rate = 0.000267033
+else
+  conversion_rate = parsed_price["data"]["amount"] 
+end%>
 
 <p id="notice"><%= notice %></p>
 <%= image_tag @game.image.url %>
@@ -30,7 +34,7 @@
   <legend>Checkout</legend>
 
   <form action="https://www.coinpayments.net/index.php" method="post">
-    <input type="email" id="email" placeholder="your email">
+    <input type="email" name="email" placeholder="your email">
     <input type="hidden" name="cmd" value="_pay">
     <input type="hidden" name="reset" value="1">
     <input type="hidden" name="merchant" value="1314720bb062281182391f79c0d4d232">
@@ -43,7 +47,6 @@
     <input type="hidden" name="success_url" value="worked.com">
     <input type="hidden" name="cancel_url" value="didntwork.com">
     <input type="hidden" name="allow_extra" value="1">
-    <input type="hidden" name="email" value="">
     <button class="button success">Purchase at <%= @game.sale %>% off</button>
   </form>
 </fieldset>
