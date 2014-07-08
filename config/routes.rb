@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   root 'games#index'
   get "index" => 'games#index'
+  get "blog" => "pages#blog"
   get "faq" => "pages#faq" #creates faq_path
   get "contact" => "pages#contact"
   get "recommend" => "pages#recommend"
