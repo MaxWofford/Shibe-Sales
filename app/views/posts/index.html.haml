@@ -1,0 +1,14 @@
+- if user_signed_in?
+  = link_to 'New Post', new_post_path, {:class => "success button"}
+- @posts.each do |post|
+  .row
+    .large-10.small-12.columns.panel
+      %h3= post.title
+      %small= post.author
+      %small= post.published
+      .horizontal-line
+      %br
+      %p= post.content.html_safe
+      - if user_signed_in?
+        %p= "#{link_to 'Show', post} | #{link_to 'Edit', edit_post_path(post)} | #{link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }}".html_safe
+%br/
