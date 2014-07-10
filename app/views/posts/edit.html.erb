@@ -1,6 +1,10 @@
+<% if user_signed_in? %>
 <h1>Editing post</h1>
 
 <%= render 'form' %>
 
 <%= link_to 'Show', @post %> |
 <%= link_to 'Back', posts_path %>
+<% else %>
+	<h3>Nothing to see here!</h3>
+<% end %>
