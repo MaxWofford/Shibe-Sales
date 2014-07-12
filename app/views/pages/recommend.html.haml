@@ -1,0 +1,19 @@
+%script{src: "https://cdn.firebase.com/js/client/1.0.15/firebase.js", type: "text/javascript"}
+:javascript
+  var fb = new Firebase("https://shibe-games.firebaseio.com/recommendations/heroku");
+  var recommend = function (userEmail, userFeedback) {
+      var userFeedback = document.getElementById("game-title").value;
+      var userEmail = document.getElementById("email").value;
+   	fb.push({email: userEmail, feedback: userFeedback}); /*Pushes data to firebase*/
+   	document.getElementById("instructions").innerHTML = "Recommendation recieved! You can recommend another here if you want, or head back to our main page for more awesome sales." ;
+    document.getElementById("instructions").className += "success alert-box";
+    document.getElementById("button").className += " disabled";
+      return false;
+  }
+.panel
+  %h1 Want us to stock up on a game when it goes on sale? Recommend it here!
+  %h4#instructions We'll also send you a notification if you provide your email.
+  %form
+    %input#game-title{placeholder: "Game title", type: "text"}/
+    %input#email{placeholder: "Email (option)", type: "email"}/
+  %button.success#button{onclick: "recommend();"} Recommend

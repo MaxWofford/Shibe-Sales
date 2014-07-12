@@ -1,0 +1,99 @@
+!!!
+%html
+  %body
+    / Need to find best practice place to define this
+    - doge_price = RestClient.get('https://www.dogeapi.com/wow/?a=get_current_price')
+    - parsed_price = JSON.parse doge_price
+    - conversion_rate = parsed_price["data"]["amount"]
+    %meta{charset: "utf-8"}/
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
+    %title= content_for?(:title) ? yield(:title) : "Shibe Sales"
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "vendor/modernizr"
+    = csrf_meta_tags
+    .row
+      #header.row
+        .row
+          .large-12.columns
+            %nav.top-bar.data-topbar
+              %ul.title-area
+                %li.name
+                  %h1
+                    = link_to "Shibe Sales", root_path
+              %section.top-bar-section
+                %ul.right
+                  %li
+                    %a{href: "https://www.dogeapi.com/convert_doge"}
+                      Currently operating at
+                      = succeed "\u{189}/1USD" do
+                        %span#header-rate= ((1 / conversion_rate) / 100).floor * 100
+                  %li
+                    = link_to "Announcements", blog_path
+                  %li
+                    = link_to "FAQ", faq_path
+                  %li
+                    = link_to "Contact", contact_path
+                  %li
+                    = link_to "Recommend", recommend_path
+                  - if user_signed_in?
+                    %li
+                      = link_to "Account Settings", edit_user_registration_path
+                    %li
+                      = link_to "Log out", destroy_user_session_path, method: :delete
+      - if current_page?(admin_path)
+        .large-10.columns
+          - flash.each do |name, msg|
+            = content_tag(:div, msg, class: "alert alert-info")
+          = yield
+      - else
+        .row
+          #sidePanel
+            .large-2.small-12.columns
+              %img.hide-for-small{src: "https://raw.githubusercontent.com/MaxWofford/spawncamping-machine/master/app/assets/images/ShibeSales.png"}/
+              %img.show-for-small{src: "https://raw.githubusercontent.com/MaxWofford/spawncamping-machine/master/app/assets/images/ShibeSalesBanner.png"}/
+              .panel
+                %h3
+                  Miss a steam sale?
+                %h5.subheader
+                  Buy the game on sale with
+                  = succeed "!" do
+                    %a{href: "http://dogecoin.com/"} Ðogecoin
+                .horizontal-line
+              .hide-for-small
+                .panel
+                  %h6
+                    Powered by:
+                    %a{href: "https://www.dogeapi.com/"} ƉogeAPI
+                  %h4
+                    %small
+                      API is
+                      - doge_chain = DogeApi::DogeChain.new
+                      - if doge_chain.getdifficulty.to_i.is_a?(Numeric)
+                        - api_status = "up"
+                      - else
+                        - api_status = "down"
+                      = api_status
+                  .horizontal-line
+          .large-10.columns
+            - flash.each do |name, msg|
+              = content_tag(:div, msg, class: "alert alert-info")
+            = yield
+      %footer#footer.row.no-border
+        .large-12.columns
+          .row.footer{style: "font-size: .25em;"}
+            .horizontal-line
+            .large-6.columns
+              %p
+                ©
+                %a{href: ""} ShibeSales
+                2014
+            .large-6.columns
+              %ul.inline-list.right
+                - if current_page?(admin_path)
+                - else
+                  %li
+                    = link_to "Admin Page", admin_path
+                %li Build 1.0.0
+        / Firebase on all pages for new features being tested on each build
+        %script{src: "https://cdn.firebase.com/js/client/1.0.17/firebase.js", type: "text/javascript"}
+      = javascript_include_tag "application"
