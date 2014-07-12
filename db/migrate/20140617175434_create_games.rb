@@ -5,7 +5,7 @@ class CreateGames < ActiveRecord::Migration
       t.text :description
       t.string :reducedPrice
       t.integer :sale
-
+      t.integer :stock
       t.timestamps
     end
   end
