@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :games
 
-  root 'games#index'
+  root "games#index"
   get "index" => "games#index"
   get "blog" => "posts#index"
   get "faq" => "pages#faq" #creates faq_path
