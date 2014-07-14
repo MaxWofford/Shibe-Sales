@@ -13,7 +13,7 @@ end%>
   <thead>
     <tr>
       <th>Title</th>
-      <th>User</th>
+      <th>Stock</th>
       <th>Description</th>
       <th>Price (USD)</th>
       <th>Sale (% off)</th>
@@ -25,7 +25,7 @@ end%>
     <% @games.each do |game| %>
       <tr>
         <td><%= game.title %></td>
-        <td><%= game.user.email if game.user %></td>
+        <td><%= game.stock %></td>
         <td><%= game.description %></td>
         <td>$<%= game.reducedPrice %></td>
         <td>-<%= game.sale %>%</td>
@@ -41,17 +41,17 @@ end%>
 <% end %>
 
 <% @games.each do |game| %>
-<div class="large-4 small-6 columns">
-  <%= link_to game do%>
-   <%= image_tag game.image.url, :class => "style_image" %>
-  <div class="panel">
-   <div class="inline">
-     <!--<%= game.title %>--> <span class="sale">-<%= game.sale %>% </span>
-     
-
-     <span class="price">Ð <span id="convert"><%= number_with_delimiter(((((game.reducedPrice.to_i - game.reducedPrice.to_i * game.sale / 100) / conversion_rate) / 100).ceil)* 100 , :delimiter => ',') %></span></span>
-   </div>
+  <% if game.stock == nil or game.stock > 0 %>
+  <div class="large-4 small-6 columns">
+    <%= link_to game do%>
+     <%= image_tag game.image.url, :class => "style_image" %>
+    <div class="panel">
+     <div class="inline">
+       <span class="sale">-<%= game.sale %>% </span>
+       <span class="price">Ð <span id="convert"><%= number_with_delimiter(((((game.reducedPrice.to_i - game.reducedPrice.to_i * game.sale / 100) / conversion_rate) / 100).ceil)* 100 , :delimiter => ',') %></span></span>
+     </div>
+    </div>
+    <% end %>
   </div>
-  <% end %>
-</div>
+<% end %>
 <% end %>

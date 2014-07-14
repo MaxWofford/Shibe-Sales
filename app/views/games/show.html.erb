@@ -1,58 +1,67 @@
-<!--Need to find best practice place to define this -->
-<%doge_price = RestClient.get('https://www.dogeapi.com/wow/?a=get_current_price') 
-parsed_price = JSON.parse doge_price 
-if parsed_price["data"]["amount"] == 0
-  conversion_rate = 0.000267033
-else
-  conversion_rate = parsed_price["data"]["amount"] 
-end%>
-
-<p id="notice"><%= notice %></p>
-<%= image_tag @game.image.url %>
-<p>
-  <h3>
-    <span id="game-title"><%= @game.title %></span>
-  </h3>
-</p>
-<p>
-  <%= @game.description.html_safe %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <span id="reduced-price"><span id="convert"><%= number_with_delimiter(((((@game.reducedPrice.to_i - @game.reducedPrice.to_i * @game.sale / 100) / conversion_rate) / 100).ceil)* 100 , :delimiter => ',') %></span></span>Ð
-</p>
-
-<!--<p>
-  <strong>Sale:</strong>
-  <%= @game.sale %>%
-</p>-->
-
-<% @game_price = ((((@game.reducedPrice.to_i - @game.reducedPrice.to_i * @game.sale / 100) / conversion_rate) / 100).ceil)* 100 %>
-
-<fieldset>
-  <legend>Checkout</legend>
-
-  <form action="https://www.coinpayments.net/index.php" method="post">
-    <input type="email" name="email" placeholder="your email">
-    <input type="hidden" name="cmd" value="_pay">
-    <input type="hidden" name="reset" value="1">
-    <input type="hidden" name="merchant" value="1314720bb062281182391f79c0d4d232">
-    <%= hidden_field_tag 'item_name', @game.title %>
-    <input type="hidden" name="currency" value="DOGE">
-    <%= hidden_field_tag 'amountf', @game_price %>
-    <input type="hidden" name="quantity" value="1">
-    <input type="hidden" name="allow_quantity" value="0">
-    <input type="hidden" name="want_shipping" value="0">
-    <input type="hidden" name="success_url" value="worked.com">
-    <input type="hidden" name="cancel_url" value="didntwork.com">
-    <input type="hidden" name="allow_extra" value="1">
-    <button class="button success">Purchase at <%= @game.sale %>% off</button>
-  </form>
-  <small>*Your game will be delivered within 24 hours of your purchase</small>
-</fieldset>
-
-<% if user_signed_in? %>
-	<%= link_to 'Edit', edit_game_path(@game) %> |
-	<%= link_to 'Back', games_path %>
+<% unless (@game.stock == nil) or (@game.stock > 0) %>
+  <h2>Nobody here but us chickens!</h2>
+  <p>The link you've clicked doesn't lead anywhere! Not sure where you wanted to go, but <%= link_to "here's a link to our main page.", games_path %></p>
+<% else %>
+  <!--Need to find best practice place to define this -->
+  <%doge_price = RestClient.get('https://www.dogeapi.com/wow/?a=get_current_price') 
+  parsed_price = JSON.parse doge_price 
+  if parsed_price["data"]["amount"] == 0
+    conversion_rate = 0.000267033
+  else
+    conversion_rate = parsed_price["data"]["amount"] 
+  end%>
+  
+  <p id="notice"><%= notice %></p>
+  <%= image_tag @game.image.url %>
+  <p>
+    <h3>
+      <span id="game-title"><%= @game.title %></span>
+    </h3>
+  </p>
+  <p>
+    <%= @game.description.html_safe %>
+  </p>
+  
+  <p>
+    <strong>Price:</strong>
+    <span id="reduced-price"><span id="convert"><%= number_with_delimiter(((((@game.reducedPrice.to_i - @game.reducedPrice.to_i * @game.sale / 100) / conversion_rate) / 100).ceil)* 100 , :delimiter => ',') %></span></span>Ð
+  </p>
+  <p>
+    <strong>Stock:</strong>
+    <%= @game.stock %>
+  </p>
+  
+  <!--<p>
+    <strong>Sale:</strong>
+    <%= @game.sale %>%
+  </p>-->
+  
+  <% @game_price = ((((@game.reducedPrice.to_i - @game.reducedPrice.to_i * @game.sale / 100) / conversion_rate) / 100).ceil)* 100 %>
+  
+  <fieldset>
+    <legend>Checkout</legend>
+  
+    <form action="https://www.coinpayments.net/index.php" method="post">
+      <input type="email" name="email" placeholder="your email">
+      <input type="hidden" name="cmd" value="_pay">
+      <input type="hidden" name="reset" value="1">
+      <input type="hidden" name="merchant" value="1314720bb062281182391f79c0d4d232">
+      <%= hidden_field_tag 'item_name', @game.title %>
+      <input type="hidden" name="currency" value="DOGE">
+      <%= hidden_field_tag 'amountf', @game_price %>
+      <input type="hidden" name="quantity" value="1">
+      <input type="hidden" name="allow_quantity" value="0">
+      <input type="hidden" name="want_shipping" value="0">
+      <input type="hidden" name="success_url" value="worked.com">
+      <input type="hidden" name="cancel_url" value="didntwork.com">
+      <input type="hidden" name="allow_extra" value="1">
+      <button class="button success">Purchase at <%= @game.sale %>% off</button>
+    </form>
+    <small>*Your game will be delivered within 24 hours of your purchase</small>
+  </fieldset>
+  
+  <% if user_signed_in? %>
+    <%= link_to 'Edit', edit_game_path(@game) %> |
+    <%= link_to 'Back', games_path %>
+  <% end %>
 <% end %>

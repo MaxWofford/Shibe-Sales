@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140709203106) do
+ActiveRecord::Schema.define(version: 20140712174516) do
 
   create_table "games", force: true do |t|
     t.string   "title"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140709203106) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "user_id"
+    t.integer  "stock"
   end
 
   add_index "games", ["user_id"], name: "index_games_on_user_id"
