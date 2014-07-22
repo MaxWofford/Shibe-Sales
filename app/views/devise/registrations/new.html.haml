@@ -1,0 +1,29 @@
+.row
+  .large-8.medium-6.small-11.column.right
+    %fieldset
+      %h3 Not sure what this page is?
+      %p
+        Don't worry, you probably shouldn't be here anyways. That shouldn't prevent you from checking out these #{link_to "sweet Shibe Sales", root_path} though!
+  .large-4.medium-6.small-11.column.left
+    /
+      <fieldset>
+      <legend>Sign up</legend>
+      
+      <haml:loud> form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| </haml:loud><haml:block>
+      <haml:loud> devise_error_messages! </haml:loud>
+      <label>
+      <div><haml:loud> f.label :email </haml:loud><br />
+      </label>
+      <haml:loud> f.email_field :email, autofocus: true </haml:loud></div>
+      <label>
+      <div><haml:loud> f.label :password </haml:loud><br />
+      </label>
+      <haml:loud> f.password_field :password, autocomplete: &amp;quot;off&amp;quot; </haml:loud></div>
+      <label>
+      <div><haml:loud> f.label :password_confirmation </haml:loud><br />
+      </label>
+      <haml:loud> f.password_field :password_confirmation, autocomplete: &amp;quot;off&amp;quot; </haml:loud></div>
+      
+      <div><haml:loud> f.submit &amp;quot;Sign up&amp;quot;, class: &amp;quot;button&amp;quot; </haml:loud></div>
+      </haml:block>	</fieldset>
+    = render "devise/shared/links"

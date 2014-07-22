@@ -1,0 +1,48 @@
+/ Need to find best practice place to define this
+- doge_price = RestClient.get('https://www.dogeapi.com/wow/?a=get_current_price')
+- parsed_price = JSON.parse doge_price
+- if parsed_price["data"]["amount"] == 0
+- conversion_rate = 0.000267033
+- else
+- conversion_rate = parsed_price["data"]["amount"]
+- end
+- if user_signed_in?
+  = link_to 'New Listing', new_game_path, {:class => "button success"}
+  %table
+    %thead
+      %tr
+        %th Title
+        %th Stock
+        %th Description
+        %th Price (USD)
+        %th Sale (% off)
+        %th{:colspan => "3"}
+    %tbody
+      - @games.each do |game|
+        %tr
+          %td= game.title
+          %td= game.stock
+          %td= game.description
+          %td
+            $#{game.reducedPrice}
+          %td
+            \-#{game.sale}%
+          %td= link_to 'Show', game
+          %td= link_to 'Edit', edit_game_path(game)
+          %td= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' }
+  %br/
+.alert.button.disabled
+  %strong Site under construction, please pardon our dust!
+  We're restocking the website due to maintanence. During this time not all our sales may be shown. We're sorry for the inconvenience, and are working to get everything listed as soon as possible.
+- @games.each do |game|
+  - if game.stock == nil or game.stock > 0
+    .large-4.small-6.columns
+      = link_to game do
+        = image_tag game.image.url, :class => "style_image"
+        .panel
+          .inline
+            %span.sale
+              \-#{game.sale}%
+            %span.price
+              Ð
+              %span#convert= number_with_delimiter(((((game.reducedPrice.to_i - game.reducedPrice.to_i * game.sale / 100) / conversion_rate) / 100).ceil)* 100 , :delimiter => ',')

@@ -1,0 +1,38 @@
+= form_for @game, html: { multipart: true } do |f|
+  - if @game.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@game.errors.count, "error")
+        prohibited this game from being saved:
+      %ul
+        - @game.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :title
+    %br/
+    = f.text_field :title
+  .field
+    = f.label :image
+    %br/
+    = f.file_field :image
+  .field
+    = f.label :description
+    %br/
+    = f.text_field :description
+  .field
+    = f.label :stock
+    %label (Item quantity)
+    %br/
+    = f.number_field :stock
+  .field
+    / <haml:loud> f.label :reducedPrice </haml:loud>
+    %label Original Price in USD
+    %br/
+    = f.text_field :reducedPrice
+  .field
+    = f.label :sale
+    %label *in % off
+    %br/
+    = f.number_field :sale
+  .actions
+    = f.submit
