@@ -2,10 +2,9 @@
 - doge_price = RestClient.get('https://www.dogeapi.com/wow/?a=get_current_price')
 - parsed_price = JSON.parse doge_price
 - if parsed_price["data"]["amount"] == 0
-- conversion_rate = 0.000267033
+  - conversion_rate = 0.000267033
 - else
-- conversion_rate = parsed_price["data"]["amount"]
-- end
+  - conversion_rate = parsed_price["data"]["amount"]
 - if user_signed_in?
   = link_to 'New Listing', new_game_path, {:class => "button success"}
   %table
