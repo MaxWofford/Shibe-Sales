@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140712174516) do
+ActiveRecord::Schema.define(version: 20140709203106) do
 
   create_table "games", force: true do |t|
     t.string   "title"
-    t.string   "description"
+    t.text     "description"
     t.string   "reducedPrice"
     t.integer  "sale"
+    t.integer  "stock"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"
@@ -25,7 +26,6 @@ ActiveRecord::Schema.define(version: 20140712174516) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "user_id"
-    t.integer  "stock"
   end
 
   add_index "games", ["user_id"], name: "index_games_on_user_id"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20140712174516) do
   create_table "posts", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.date     "published"
+    t.datetime "published"
     t.string   "author"
     t.datetime "created_at"
     t.datetime "updated_at"
