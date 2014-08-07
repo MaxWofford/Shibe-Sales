@@ -60,16 +60,8 @@
                 .panel
                   %h6
                     Powered by:
-                    %a{href: "https://www.dogeapi.com/"} ƉogeAPI
+                    %a{href: "https://www.coinpayments.net/"} CoinPayments
                   %h4
-                    %small
-                      API is
-                      - doge_chain = DogeApi::DogeChain.new
-                      - if doge_chain.getdifficulty.to_i.is_a?(Numeric)
-                        - api_status = "up"
-                      - else
-                        - api_status = "down"
-                      = api_status
                   .horizontal-line
           .large-10.columns
             - flash.each do |name, msg|
