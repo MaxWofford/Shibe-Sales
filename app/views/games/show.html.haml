@@ -4,12 +4,13 @@
     The link you've clicked doesn't lead anywhere! Not sure where you wanted to go, but #{link_to "here's a link to our main page.", games_path}
 - else
   / Need to find best practice place to define this
-  - doge_price = RestClient.get('https://www.dogeapi.com/wow/?a=get_current_price')
-  - parsed_price = JSON.parse doge_price
-  - if parsed_price["data"]["amount"] == 0
-    - conversion_rate = 0.000267033
-  - else
-    - conversion_rate = parsed_price["data"]["amount"]
+  /- doge_price = RestClient.get('https://www.dogeapi.com/wow/?a=get_current_price')
+  /- parsed_price = JSON.parse doge_price
+  /- if parsed_price["data"]["amount"] == 0
+  /  - conversion_rate = 0.000267033
+  /- else
+  /  - conversion_rate = parsed_price["data"]["amount"]
+  - conversion_rate = 0.000267033
   %p#notice= notice
   = image_tag @game.image.url
   %p
