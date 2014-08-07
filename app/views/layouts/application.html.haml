@@ -1,10 +1,7 @@
 !!!
 %html
   %body
-    / Need to find best practice place to define this
-    - doge_price = RestClient.get('https://www.dogeapi.com/wow/?a=get_current_price')
-    - parsed_price = JSON.parse doge_price
-    - conversion_rate = parsed_price["data"]["amount"]
+    - conversion_rate = 0.000267033
     %meta{charset: "utf-8"}/
     %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
     %title= content_for?(:title) ? yield(:title) : "Shibe Sales"
