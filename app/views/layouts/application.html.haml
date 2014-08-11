@@ -66,6 +66,12 @@
           .large-10.columns
             - flash.each do |name, msg|
               = content_tag(:div, msg, class: "alert alert-info")
+            .head-announcement
+              %p Latest announcement:
+              %h2
+                = link_to "/posts/#{Post.last.id}" do
+                  '#{Post.last.title}'
+                  %small.quiet-text by #{Post.last.author}
             = yield
       %footer#footer.row.no-border
         .large-12.columns
