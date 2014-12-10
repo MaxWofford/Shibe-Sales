@@ -25,8 +25,7 @@
           %td= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' }
   %br/
 .alert.button.disabled
-  %strong Site under construction, please pardon our dust!
-  Because of the recent shutdown of dogeAPI, Shibe Sales had some downtime recently. We're really sorry for any inconvenience this may have caused. There will be a brief period while we restock, but you can still purchase any of the games you see below. 
+  Because of the recent shutdown of dogeAPI, Shibe Sales is experiencing a short downtime. Purchases cannot be made at this time. We're sorry for any inconvenience this has caused.
 - @games.each do |game|
   - if game.stock == nil or game.stock > 0
     .large-4.small-6.columns
