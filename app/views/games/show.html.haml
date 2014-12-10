@@ -15,13 +15,12 @@
     %strong Price:
     = succeed "\xC3\x90" do
       %span#reduced-price
-        %span#convert= number_with_delimiter(((((@game.reducedPrice.to_i - @game.reducedPrice.to_i * @game.sale / 100) / conversion_rate) / 100).ceil)* 100 , :delimiter => ',')
+        %span#convert= @price_in_doge
   /
     <p>
     <strong>Sale:</strong>
     <haml:loud> @game.sale </haml:loud>%
     </p>
-  - @game_price = ((((@game.reducedPrice.to_i - @game.reducedPrice.to_i * @game.sale / 100) / conversion_rate) / 100).ceil)* 100
   %fieldset
     %legend Checkout
     %form{:action => "https://www.coinpayments.net/index.php", :method => "post"}
