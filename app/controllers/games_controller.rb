@@ -6,6 +6,8 @@ class GamesController < ApplicationController
   end
 
   def show
+    @game_price = ((((@game.reducedPrice.to_i - @game.reducedPrice.to_i * @game.sale / 100) / conversion_rate) / 100).ceil)* 100
+    @price_in_doge = number_with_delimiter(((((@game.reducedPrice.to_i - @game.reducedPrice.to_i * @game.sale / 100) / conversion_rate) / 100).ceil)* 100 , :delimiter => ',')
   end
 
   def new
